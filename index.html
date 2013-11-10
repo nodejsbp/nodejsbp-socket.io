@@ -1,152 +1,531 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
-		<title>nodejsbp - socket.io</title>
+    <title>nodejsbp - socket.io</title>
 
-		<meta name="description" content="Intro to socket.io and the hard parts">
-		<meta name="author" content="Robert Oroszi">
+    <meta name="description" content="Intro to socket.io and the hard parts">
+    <meta name="author" content="Robert Oroszi">
 
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
 
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <style>
+      .mail{
+        direction: rtl;
+        unicode-bidi: bidi-override;
+      }
+    </style>
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section>
-					<h1>socket.io</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>by Robert Oroszi (oroce)</small>
-					</p>
-				</section>
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>socket.io</h1>
+          <h3>whys and why nots</h3>
+          <p>
+            <small>by Robert Oroszi (oroce)</small>
+          </p>
+        </section>
 
-				<section>
-					<h2>Who am i?</h2>
-					<h3>@oroce</h3>
-					<a href="http://twitter.com/oroce">twitter</a>
-					<a href="http://github.com/oroce">github</a>
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
+        <section>
+          <h2>Who am i?</h2>
+          <h3>@oroce</h3>
+          <a href="http://twitter.com/oroce">twitter</a>
+          <a href="http://github.com/oroce">github</a>
+          <a class="mail" href="#">ten.izsoro@trebor</a>
+          <aside class="notes">
+            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+          </aside>
+        </section>
 
-				<section>
-					coding
-				</section>
+        <section>
+          <h1>what is socket.io</h1>
+          <aside class="notes">
+            <ul>
+              <li>who have heard of socket.io?</li>
+              <li>who have used socket.io?</li>
+              <li>who have plans to use socket.io</li>
+            </ul>
+          </aside>
+        </section>
+        
+        <section>
+          <h3>what is socket.io</h3>
+          <ul>
+            <li>websocket abstraction with fallback support</li>
+            <li>client && server side library</li>
+          </ul>
+          <aside class="notes">
+            <ul>
+              <li>why do we need websocket abstraction? because there are firewalls, antivirus sws, company proxies and mobile (3G)</li>
+            </ul>
+          </aside>
+        </section>
 
-				<section>
-					<section>
-						heap
-					</section>
-					<section>
-						<code>FATAL ERROR: CALL_AND_RETRY_2 Allocation failed - process out of memory</code>
-					</section>
-					<section>
-						<code>--max-old-space-size</code>
-					</section>
-					<section>
-						GC
-					</section>
-				</section>
-		
-				<section>
-					<h2>no problem, we are going to scale socket.io...</h2>
-				</section>
-				
-				<section>
-					<section>
-						ohhh socket.io has built-in redis store to do the scaling, which will be awesome (or you think that)
-					</section>
-					<section>
-						<code>
-							[...]cmd=subscribe scheduled to be closed ASAP for overcoming of output buffer limits.
-						</code>
-					</section>
-				</section>
-				<section>
-					<section>
-						monitor your app
-					</section>
-					<section>
-						<small>npm install -g</small>nodetime
-						<br />
-						<small>npm install -g</small>nodefly
-						<br />
-						<small>npm install -g</small>node-webkit-agent
-					</section>
-					<section>
-						awesome, charts and etc
-					</section>
-					<section>
-						these are using your resources to submit the metrics
-					</section>
-				</section>
-				<section>
-					<section>
-						<h1>performance monitoring at its best</h1>
-						<h3>meet DTrace <small>and flamegraphs</small></h3>
-					</section>
-					<section>
-						<h1>flamegraph</h1>
-						<img src="http://cs.brown.edu/~dap/helloworld.svg" /> 
-					</section>
-				</section>
-			</div>
+        <section>
+          <code>&lt;coding&gt;</code>
+          <aside class="notes">
+            <ul>
+              <li>we are gonna build a chat application, everybody can connect to this and can send messages</li>
+            </ul>
+        </section>
 
-		</div>
+        <section>
+          <h1>we are gonna use <a href="http://twitter.com/gergelyke">@gergelyke's</a> <a href="https://github.com/gergelyke/nodeWHAT">nodeWHAT</a></h1>.
+        </section>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+        <section>
+          <code>npm install socket.io --save</code>
+          <small>socket.io 0.9.X: <a href="https://github.com/LearnBoost/socket.io/tree/0.9/lib">https://github.com/LearnBoost/socket.io/tree/0.9</a></small>
+        </section>
 
-		<script>
+        <section>
+          <section>
+            <h3>the original version</h3>
+            <pre>
+              <code>
+var http = require('http'),
+    express = require('express'),
+    fs = require('fs'),
+    app = express();
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+app.use(express.static(__dirname + '/static'));
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+app.get('/', function(req, res) {
+    res.send('nodeWHAT!?');
+});
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
+http.createServer(app).listen(3000, function (err) {
+    if (err) return console.log(err);
+});
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>wire socket.io</h3>
+            <pre>
+              <code>
+var http = require('http'),
+    express = require('express'),
+    fs = require('fs'),
+    app = express(),
+    sio = require('socket.io');
 
-		</script>
+app.use(express.static(__dirname + '/static'));
 
-	</body>
+app.get('/', function(req, res) {
+    res.send('nodeWHAT!?');
+});
+
+var server = http.createServer(app);
+
+var io = sio.listen(server);
+
+server.listen(3000, function (err) {
+    if (err) return console.log(err);
+});
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre>
+              <code>
+@@ -1,7 +1,8 @@
+ var http = require('http'),
+     express = require('express'),
+     fs = require('fs'),
+-    app = express();
++    app = express(),
++    sio = require('socket.io');
+
+ app.use(express.static(__dirname + '/static'));
+
+@@ -9,6 +10,9 @@ app.get('/', function(req, res) {
+     res.send('nodeWHAT!?');
+ });
+
+-http.createServer(app).listen(3000, function (err) {
++var server = http.createServer(app);
++var io = sio.listen(server);
++
++server.listen(3000, function (err) {
+     if (err) return console.log(err);
+});
+              </code>
+            </pre>
+          </section>
+        </section>
+        
+        <section>
+            <h3>Run the server</h3>
+            <code>npm start</code>
+            <br />
+            <br />
+            <p>Server should response to <a href="http://localhost:3000/socket.io" about="blank">http://localhost:3000/socket.io</a></p>
+            <br />
+            <br />
+            <small>read more about <a href="https://npmjs.org/doc/cli/npm-start.html"><code>npm start</code></a></small>
+        </section>
+
+        <section>
+          <h1>now let's create a client</h1>
+        </section>
+
+        <section>
+          <section>
+            <ol>
+              <li>we need a simple index.html file</li>
+              <li>it'll be served by using <a href="https://github.com/visionmedia/express">express'</a> built-in <code>static</code> middleware</li>
+              <li>create a index.html file: <code>./static/index.html</code></li>
+              <li>open <a href="http://localhost:3000/index.html">http://localhost:3000/index.html</a></li>
+              <li>socket.io client will be served at <a href="http://localhost:3000/socket.io/socket.io.js">http://localhost:3000/socket.io/socket.io[.min].js</a></li>
+            </ol>
+            <code>&lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;</code>
+          </section>
+          <section>
+            <h3>connect to the server</h3>
+            <code>var socket = io.connect();</code>
+          </section>
+        </section>
+
+        <section>
+          <h1>send some messages</h1>
+        </section>
+
+        <section>
+          <h3>socket.io works like an <code>EventEmitter</code> on both client and server side</h3>
+          <p>Server:<small><a href="https://github.com/LearnBoost/socket.io/wiki/Exposed-events#server">wiki</a></small>
+            <br />
+            <code>connection*, message, disconnect</code>
+          </p>
+          <br />
+          <p>Client:<small><a href="https://github.com/LearnBoost/socket.io/wiki/Exposed-events#client">wiki</a></small>
+            <br />
+            <code>connect, reconnect, message, disconnect, etc</code>
+          </p>
+        </section>
+
+        <section>
+          <h3>events in socket.io</h3>
+          <ul>
+            <li>
+              <code>Socket#send</code> emits <code>message</code> event
+            </li>
+            <li>
+              <code>Socket#emit( "nodejsbp" )</code> emits <code>nodejsbp</code> event
+            </li>
+          </ul>
+        </section>
+        <section>
+          <section>
+            <h3>receive connections</h3>
+            <pre>
+              <code>
+io.on('connection', function (socket){
+  // `socket` is a connected client
+});
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>listen for messages</h3>
+            <pre>
+              <code>
+socket.on('message',function (data){
+  // client sent something awesome for us
+});
+              </code>
+            </pre>
+          </section>
+
+          <section>
+            <h3>receive connection, listen for messages, broadcast them</h3>
+            <pre>
+              <code>
+io.on('connection', function (socket){
+    socket.on('message', function (data){
+      io.sockets.send(data);
+    });
+});
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>message handler and broadcaster for the server</h3>
+            <pre>
+             <code>
+@@ -14,6 +14,12 @@ var server = http.createServer(app);
+
+ var io = sio.listen(server);
+
++io.on('connection', function (socket){
++    socket.on('message', function (data){
++      io.sockets.send(data);
++    });
++});
++
+ server.listen(3000, function (err) {
+     if (err) return console.log(err);
+ });
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>client</h1>
+          </section>
+          <section>
+            <h3>index.html</h3>
+            <pre><code>
+               <!DOCTYPE html>
+ &lt;html&gt;
+   &lt;body&gt;
++    &lt;h1&gt;socket.io chat example for node.js budapest&lt;/h1&gt;
++    &lt;h3 id="status"&gt;&lt;/h3&gt;
++    &lt;ul id="messages"&gt;&lt;/ul&gt;
++
++    &lt;input type="text" /&gt;
++    &lt;button&gt;send&lt;/button&gt;
+     &lt;script src="/socket.io/socket.io.js"&gt;&lt;/script&gt;
+     &lt;script src="/client.js"&gt;&lt;/script&gt;
+   &lt;/body&gt;</code></pre>
+          </section>
+          <section>
+            <h3>client.js</h3>
+            <pre>
+              <code>
+@@ -1 +1,32 @@
+-var socket = io.connect();
+\ No newline at end of file
++var socket = io.connect(),
++    messagesEl = document.querySelector('#messages'),
++    statusEl = document.querySelector('#status'),
++    textEl = document.querySelector('input'),
++    sendBtnEl = document.querySelector('button'),
++    me = prompt('tell me your name sunshine, you\'d be grateful');
++
++[ 'connect', 'reconnect', 'connecting', 'disconnect' ].forEach(function( evName ){
++  socket.on( evName, function(){
++    statusEl.textContent = evName;
++  });
++});
++
++socket.on('message', addMessage);
++
++sendBtnEl.addEventListener('click', function(){
++  var text = ( textEl.value||'' ).trim();
++  var date = new Date();
++  socket.send(JSON.stringify({
++    from: me,
++    text: text,
++    date: date.getHours() + ':' + date.getMinutes()
++  }));
++  textEl.value = '';
++}, false);
++
++function addMessage(data){
++  var message = JSON.parse(data);
++  var li = document.createElement('li');
++  li.innerHTML = message.from + ':' + message.text + ' (at ' + message.date + ')';
++  messagesEl.appendChild( li );
++}
+              </code>
+            </pre>
+          </section>
+        </section>
+
+        <section>
+          <code>&lt;/coding&gt;</code>
+        </section>
+
+        <section>
+          <h1>so far so good...BUT</h1>
+        </section>
+        <section>
+          <section>
+            <h1>heap</h1>
+          </section>
+          <section>
+            <code>FATAL ERROR: CALL_AND_RETRY_2 Allocation failed - process out of memory</code>
+          </section>
+          <section>
+            <code>--max-old-space-size</code>
+          </section>
+          <section>
+            <h1>GC<h1>
+          </section>
+        </section>
+    
+        <section>
+          <h2>no problem, we are going to scale socket.io...</h2>
+          <aside class="notes">
+            <p>Has anybody done that?</p>
+          </aside>
+        </section>
+        
+        <section>
+          <section>
+            <h1>ohhh socket.io has built-in redis store to do the scaling, which will be awesome (you hope that)</h1>
+          </section>
+          <section>
+            <h3>using redis and node's built-in cluster ain't that much fun.</h3>
+            <code>
+              [...]cmd=subscribe scheduled to be closed ASAP for overcoming of output buffer limits.
+            </code>
+            <p>
+              ps: nodejs cluster works on the same machine
+            </p>
+          </section>
+        </section>
+
+        <section>
+          <h1>scale out w/o RedisStore</h1>
+          <h3>That's the fun thing :)</h3>
+        </section>
+
+        <section>
+          <h3>scaling out - problems</h3>
+          <ul>
+            <li>which proxy to use? (haproxy, nginx, http-proxy) (<a href="https://github.com/observing/balancerbattle">BalanceBattle</a>)</li>
+            <li>sticky sessions</li>
+            <li>pubsub layer</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>by scaling out you'll get</h3>
+          <ul>
+            <li>lof of fucks, for sure</li>
+            <li>awesome perfomance (or not)</li>
+            <li>you can dynamically turn on/off your instances</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            monitor your app
+          </section>
+          <section>
+            <code>npm install -g nodetime</code>
+            <br />
+            <code>npm install -g nodefly</code>
+            <br />
+            <code>npm install -g node-webkit-agent</code>
+          </section>
+          <section>
+            <h3>awesome, charts and etc</h3>
+            <img src="https://lh4.googleusercontent.com/mKBKOpLdMaWW73d3akljP5AH7PqC7ayvsYj6BEQo7mM35u-EYTxaycZ6ha-2pmP9LOHX11dlNer7nkCKrwNstGhET7ui9XBOu1aZ-kjplMOPlGFuS4EfUxEZ" />
+            <img src="http://nodetime.typepad.com/.a/6a017c34733410970b017d42151ce7970c-800wi" />
+          </section>
+          <section>
+            <h1>these are using your resources to submit the metrics</h1>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h1>performance monitoring at its best</h1>
+            <h3>meet DTrace and flamegraphs</h3>
+          </section>
+          <section>
+            <h1>flamegraph</h1>
+            <img src="http://cs.brown.edu/~dap/helloworld.svg" /> 
+          </section>
+          <section>
+            <h1>...and don't the forget the <code>heap</code>.</h1>
+            <ul>
+              <li>find memory leaks</li>
+              <li>monitor the number of sent and received messages (and latency and actually everything)</li>
+              <li>CLEAN UP THE BUFFER</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>why not socket.io</h3>
+            <ul>
+              <li><code>warn  - client not handshaken client should reconnect</code></li>
+              <li>socket.io-client is optimistic</li>
+            </ul>
+          </section>
+          <section>
+            <h1>ohh and hasn't been upgraded for 8 months</h1>
+            <img src="./assets/socket.io.png" />
+          </section>
+        </section>
+
+        <section>
+          <h3>alternatives</h3>
+          <ul>
+            <li><a href="https://github.com/LearnBoost/engine.io">engine.io</a></li>
+            <li><a href="https://github.com/sockjs/sockjs-node">socksjs</a></li>
+            <li><a href="https://github.com/primus/primus">primus.io</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>resources</h3>
+          <ul>
+            <li><a href="http://vimeo.com/77289036">Arnout Kazemier about Primus at RealtimeConf 2013</a></li>
+            <li><a href="https://github.com/observing/balancerbattle">BalancerBattle - haproxy vs nginx vs http-proxy</a></li>
+          </ul>
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
 </html>
