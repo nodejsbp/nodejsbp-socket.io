@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>heyyo socket.io</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+    <style>
+      h1{
+        text-align: center;
+        margin-bottom: 35px;
+      }
+      #messages{
+        width: 500px;
+        border: solid 3px #FFF;
+        border-radius: 6px;
+        margin: 0 auto;
+        min-height: 200px;
+        overflow: auto;
+      }
+      #messages li{
+        min-height: 50px;
+      }
+      small{
+        line-height: 20px;
+        display: inline-block;
+        border-radius: 0px 0px 0px 5px;
+        padding: 0 5px 0 5px;
+        float: right;
+        clear: both;
+        margin-right: 5px;
+        background: #ff5e99;
+        opacity: 0;
+        transition: opacity 0.3s linear;
+      }
+      .me{
+        clear:both;
+      }
+      .me small{
+        float: left;
+        margin-right: 0;
+        margin-left: 5px;
+        background: #bada55;
+        border-radius: 0px 0px 5px 0px;
+      }
+      li p{
+        background: #ff5e99;
+        float: right;
+        margin: 5px 5px 0 0;
+        border-radius: 0px 5px 0 5px;
+        padding: 0 3px 0 3px;
+      }
+      li:hover small{
+        opacity: 1;
+      }
+      .me p{
+        background: #bada55;
+        float:left;
+        margin: 5px 0 0 5px;
+        border-radius: 5px 0px 5px 0;
+      }
+      .from{
+        font-weight: bold;
+      }
+      .from:after{
+        content: ": ";
+      }
+      .controls{
+        width: 330px;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+      input[type='text']{
+        width: 250px;
+        display: inline-block;
+      }
+      #status{
+        text-align: center;
+      }
+      #status:before{
+        content: "current socket.io status: ";
+      }
+      #messages:empty:before{
+        content: "no messages yet:(";
+        text-align: center;
+        vertical-align: middle;
+        margin-left: 167px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>socket.io chat example for node.js budapest</h1>
+        <h3 id="status"></h3>
+        <ul id="messages" class="list-unstyled"></ul>
+        <div class="controls">
+          <input type="text" class="form-control" />
+          <button class="btn btn-default btn-lg">send</button>
+        </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

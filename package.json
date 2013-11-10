@@ -1,46 +1,24 @@
 {
-  "name": "reveal.js",
-  "version": "2.6.0-dev",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://lab.hakim.se/reveal-js",
-  "subdomain": "revealjs",
+  "name": "nodejsbp-socket.io",
+  "version": "1.0.0",
+  "description": "demo app for nodejs bp",
+  "main": "app.js",
   "scripts": {
-    "test": "grunt test",
-    "start": ""
-  },
-  "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "url": "git://github.com/oroce/nodejsbp-socket.io.git"
   },
-  "engines": {
-    "node": "~0.8.0"
+  "private": true,
+  "author": "oroce <robert@oroszi.net>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/oroce/nodejsbp-socket.io/issues"
   },
   "dependencies": {
-    "underscore": "~1.5.1",
-    "express": "~2.5.9",
-    "mustache": "~0.7.2",
-    "socket.io": "~0.9.13"
-  },
-  "devDependencies": {
-    "grunt-contrib-qunit": "~0.2.2",
-    "grunt-contrib-jshint": "~0.6.4",
-    "grunt-contrib-cssmin": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-sass": "~0.5.0",
-    "grunt-contrib-connect": "~0.4.1",
-    "grunt-zip": "~0.7.0",
-    "grunt": "~0.4.0"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/hakimel/reveal.js/blob/master/LICENSE"
-    }
-  ]
+    "express": "~3.4.4",
+    "socket.io": "~0.9.16"
+  }
 }
