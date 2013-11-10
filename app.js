@@ -14,6 +14,12 @@ var server = http.createServer(app);
 
 var io = sio.listen(server);
 
+io.on('connection', function (socket){
+    socket.on('message', function (data){
+      io.sockets.send(data);
+    });
+});
+
 server.listen(3000, function (err) {
     if (err) return console.log(err);
 });
