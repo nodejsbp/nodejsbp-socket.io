@@ -1,0 +1,24 @@
+{
+  "name": "nodejsbp-socket.io",
+  "version": "1.0.0",
+  "description": "demo app for nodejs bp",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oroce/nodejsbp-socket.io.git"
+  },
+  "private": true,
+  "author": "oroce <robert@oroszi.net>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/oroce/nodejsbp-socket.io/issues"
+  },
+  "dependencies": {
+    "express": "~3.4.4",
+    "socket.io": "~0.9.16"
+  }
+}
