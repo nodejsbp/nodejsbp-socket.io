@@ -48,6 +48,18 @@
           <p>
             <small>by Robert Oroszi (oroce)</small>
           </p>
+          <h3>DEMO: <a href="http://nbp.ngrok.com">http://nbp.ngrok.com</a></h3>
+          <aside class="notes">
+            <ul>
+              <li>close adium and twitter</li>
+              <li>kill everything on *:3000:
+                <code>lsof -i -P | grep 3000 | awk '{print $2}' | xargs kill</code>
+              </li>
+              <li>run ngrok:
+                <code>ngrok -subdomain nbp 3000</code>
+              </li>
+            </ul>
+          </aside>
         </section>
 
         <section>
@@ -86,11 +98,13 @@
         </section>
 
         <section>
-          <code>&lt;coding&gt;</code>
+          <code>&lt;coding&gt;</code><br />
+          <a href="#/16">jump to &lt;/coding&gt;</a>
           <aside class="notes">
             <ul>
               <li>we are gonna build a chat application, everybody can connect to this and can send messages</li>
             </ul>
+          </aside>
         </section>
 
         <section>
@@ -302,7 +316,7 @@ io.on('connection', function (socket){
           <section>
             <h3>index.html</h3>
             <pre><code>
-               <!DOCTYPE html>
+               &lt;!DOCTYPE html&gt;
  &lt;html&gt;
    &lt;body&gt;
 +    &lt;h1&gt;socket.io chat example for node.js budapest&lt;/h1&gt;
@@ -377,7 +391,7 @@ io.on('connection', function (socket){
             <code>--max-old-space-size</code>
           </section>
           <section>
-            <h1>GC<h1>
+            <h1>GC</h1>
           </section>
         </section>
     
@@ -494,6 +508,7 @@ io.on('connection', function (socket){
             <li><a href="http://vimeo.com/77289036">Arnout Kazemier about Primus at RealtimeConf 2013</a></li>
             <li><a href="https://github.com/observing/balancerbattle">BalancerBattle - haproxy vs nginx vs http-proxy</a></li>
           </ul>
+        </section>
       </div>
 
     </div>
