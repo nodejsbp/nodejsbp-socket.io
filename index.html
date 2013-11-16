@@ -69,7 +69,13 @@
           <a href="http://github.com/oroce">github</a>
           <a class="mail" href="#">ten.izsoro@trebor</a>
           <aside class="notes">
-            Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
+            <ul>
+              <li>talk about yourself, noder since 2010 october</li>
+              <li>did this socket.io thing @brozie, say something about it, how it works, etc</li>
+              <li>the problems doesn't happen &lt;10k user</li>
+              <li>most of our problems happended if there were lot of connect/disconnect and huge amount of messages (4-500kB/s)</li>
+              <li>&gt;3 socket.io</li>
+            </ul>
           </aside>
         </section>
 
@@ -89,17 +95,44 @@
           <ul>
             <li>websocket abstraction with fallback support</li>
             <li>client && server side library</li>
+            <li>multiple transports</li>
           </ul>
           <aside class="notes">
             <ul>
               <li>why do we need websocket abstraction? because there are firewalls, antivirus sws, company proxies and mobile (3G)</li>
+              <li>ask how many heard of websocket?</li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3><strong style="color:#bada55">http</strong> vs websocket</h3>
+          <img src="assets/one-way.jpg" />
+          <small><a href="http://www.flickr.com/photos/garrett/2184796818/sizes/o/in/photolist-4k4DYE-4okeVP-4qEaqG-4L7ZQv-4NFZYD-4Q1hSB-4URcFR-4Wrafk-4Y9ue4-5383dE-58ytFb-5bypWH-5caDUZ-5dtJfR-5ogQBM-5szHYd-5A5aLQ-5BBZC6-5FQfn5-5HTcXB-5Jbj7F-5Se47n-5TD41m-67yhy2-67MG7M-6a2KjM-6dwUer-6pDjF9-6KbiBM-6Raqrk-6U8VgZ-6UWoy6-6UXQoi-6Vo3pX-6WQKcE-6XisGN-6XA3hN-6ZVhQg-728P7F-7bq2z2-7jbBeK-7mMXPH-7nknGr-7nJBU8-7rcJ3G-7rKMpn-7t5mcR-8xuYY9-9io3uJ-842nN3-9FZSNt/">flickr</a></small>
+          <aside class="notes">
+            <ul>
+              <li>first of all: what is websocket? bidirectional communication between server and client</li>
+              <li>in php you have to do bizarre things like this: <code>&lt;?php while(true){}&gt;</code></li>
+            </ul>
+          </aside>
+        </section>
+
+        <section>
+          <h3>http vs <strong style="color:#bada55">websocket</strong></h3>
+          <img src="assets/two-ways.jpg" />
+          <small><a href="http://www.flickr.com/photos/z6p6tist6/500048151/sizes/o/in/photolist-LbSTR-Nko2T-Twod8-2S6Bsn-2WCPw3-392L7E-3pw15R-41zrkd-4bkR6R-4eGyup-4ggHTD-4nwYpX-4nXoTm-4peawF-4t8Jh1-4vuQD2-4wqgPB-4CUwze-4MZboq-4VrgBT-55xiov-5evWK6-5h65n6-5hLghW-5yEAD5-5EQAR5-5Jti7Z-5LBvhT-5SyNdo-5TD41m-6789LF-678ysK-69bdKd-6dyMrx-6dBmcj-6kC6WA-6uvxHJ-6vPxYG-6AgYAK-6T3JyT-7aMmCW-7aMmKd-7gt8bV-7nZfJA-7wnQQA-9LY8WT-bD6HZn-7XUdQ5-7UDjRs-bb4cLF-cGugFs/">flickr</a></small>
+          <aside class="notes">
+            <ul>
+              <li>first of all: what is websocket? bidirectional communication between server and client</li>
+              <li>in php you have to do bizarre things like this: <code>&lt;?php while(true){}&gt;</code></li>
+              <li>CHECK THE DEMO SITE</li>
             </ul>
           </aside>
         </section>
 
         <section>
           <code>&lt;coding&gt;</code><br />
-          <a href="#/16">jump to &lt;/coding&gt;</a>
+          <a href="#/18">jump to &lt;/coding&gt;</a>
           <aside class="notes">
             <ul>
               <li>we are gonna build a chat application, everybody can connect to this and can send messages</li>
@@ -383,15 +416,27 @@ io.on('connection', function (socket){
         <section>
           <section>
             <h1>heap</h1>
+            <aside class="notes">
+              <p>this is the v8 heap.</p>
+              <p>that amount of memory which can be allocated for our app by v8</p>
+            </aside>
           </section>
           <section>
             <code>FATAL ERROR: CALL_AND_RETRY_2 Allocation failed - process out of memory</code>
+            <aside class="notes">
+              <p>you have to restart your application</p>
+              <p>or you can use a process manager (forever, monit, mon, supervisord) which RESTARTS for you</p>
+            </aside>
           </section>
           <section>
             <code>--max-old-space-size</code>
           </section>
           <section>
             <h1>GC</h1>
+            <h3>garbage collector</h3>
+            <aside class="notes">
+              <p>DUMMY EXPLANATION: garbage collector is responsible to automatically clean the memory, it tries to find out what parts of memory are garbage and removes them from memory</p>  
+            </aside>
           </section>
         </section>
     
@@ -399,23 +444,68 @@ io.on('connection', function (socket){
           <h2>no problem, we are going to scale socket.io...</h2>
           <aside class="notes">
             <p>Has anybody done that?</p>
+            <p>DEMO SITE</p>
           </aside>
         </section>
         
         <section>
+          <h3>ohhh socket.io has built-in <a href="http://redis.io">redis</a> store to do the scaling, which will be awesome (you hope that)</h3>
+          <aside class="notes">
+            <p>redis is a key-value store</p>
+            <p>not such string-string representation, it supports different data-structures, too</p>
+            <p>..and also it has pubsub feature</p>
+          </aside>
+        </section>
+
+        <section>
           <section>
-            <h1>ohhh socket.io has built-in redis store to do the scaling, which will be awesome (you hope that)</h1>
+            <h3>how RedisStore works</h3>
           </section>
+
           <section>
-            <h3>using redis and node's built-in cluster ain't that much fun.</h3>
-            <code>
-              [...]cmd=subscribe scheduled to be closed ASAP for overcoming of output buffer limits.
-            </code>
+            <h3>there are lot of good looking servers, i would connect to one of them</h3>
+            <div style="float:left;width:30%">
+              <img src="assets/client.png"  />
+              <span>client</span>
+            </div>
+            <div  style="float:right;width:30%;margin-top:30%">
+              <img src="assets/servers.png"/>
+              <span>servers</span>
+            </div>
+          </section>
+
+          <section>
+            <h3>let's connect to the first one</h3>
+            <img src="assets/connect.png" />
+          </section>
+
+          <section>
+            <h3>server1 broadcasts:</h3>
             <p>
-              ps: nodejs cluster works on the same machine
+              FYI: a client (name it <code>foobar</code>) connected to me, I stored everything in redis and this is currently know about it:
             </p>
+            <pre>
+              <code>
+{
+    "id": "foobar",
+    "name": "awesome minion"
+}
+              </code>
+            </pre>
+            <p>I'll let you know if something happen between us</p>
           </section>
         </section>
+
+        <section>
+          <h3>using redis and node's built-in cluster ain't that much fun.</h3>
+          <code>
+            [...]cmd=subscribe scheduled to be closed ASAP for overcoming of output buffer limits.
+          </code>
+          <p>
+            ps: nodejs cluster works on the same machine
+          </p>
+        </section>
+        
 
         <section>
           <h1>scale out w/o RedisStore</h1>
@@ -442,12 +532,12 @@ io.on('connection', function (socket){
 
         <section>
           <section>
-            monitor your app
+            <h3>monitor your app</h3>
           </section>
           <section>
             <code>npm install -g nodetime</code>
             <br />
-            <code>npm install -g nodefly</code>
+            <code>npm install -g nodefly</code> (strongops)
             <br />
             <code>npm install -g node-webkit-agent</code>
           </section>
@@ -458,19 +548,24 @@ io.on('connection', function (socket){
           </section>
           <section>
             <h1>these are using your resources to submit the metrics</h1>
+            <aside class="notes">
+              <p>these are useful for a http application but not a realtime app</p>
+            </aside>
           </section>
         </section>
         <section>
           <section>
-            <h1>performance monitoring at its best</h1>
-            <h3>meet DTrace and flamegraphs</h3>
+            <h3>performance monitoring at its best
+              <small>meet DTrace and flamegraphs</small>
+            </h3>
           </section>
           <section>
-            <h1>flamegraph</h1>
-            <img src="http://cs.brown.edu/~dap/helloworld.svg" /> 
+            <h3>flamegraph</h3>
+            <img src="assets/stacks.png" /> 
+            <small><a href="assets/stacks_ws.svg">original svg</a></small>
           </section>
           <section>
-            <h1>...and don't the forget the <code>heap</code>.</h1>
+            <h3>...and don't the forget the <code>heap</code>.</h3>
             <ul>
               <li>find memory leaks</li>
               <li>monitor the number of sent and received messages (and latency and actually everything)</li>
@@ -485,6 +580,7 @@ io.on('connection', function (socket){
             <ul>
               <li><code>warn  - client not handshaken client should reconnect</code></li>
               <li>socket.io-client is optimistic</li>
+              <li>huge amount of connect / reconnect</li>
             </ul>
           </section>
           <section>
